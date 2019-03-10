@@ -164,7 +164,6 @@ namespace AutomateTestForFactools
             //assert
             _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "99", "Validate Line Amount detect incorrect behavior");
-
         }
 
         [TestMethod]
