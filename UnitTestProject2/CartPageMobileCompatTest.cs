@@ -128,14 +128,15 @@ namespace AutomateTestForFactools
         }
 
         [TestMethod]
-        public void AddNewLineItemWithWithNonIntQuantityIntoTheCartShouldBeBeValidateByUI()
+        public void AddNewLineItemWithWithInvalidQuantityIntoTheCartShouldBeBeValidateByUI()
         {
             //arrange
+            string invalidInput = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./ๆไำพะัีรนยบลฃงวสา่้เดกหฟผปแอิืทมใฝฅ,ฐญฯณ๊ํธฑฎ\"ฤฆฏโฌ็๋ษศซ.ฦฬฒ?์ฺฮฉ";
             _driver.Navigate().GoToUrl(FacToolProductUrl);
             _driver.FindElement(ProdQuantity).Clear();
             _helpers.SetElementValue(_driver, ProdQuantity, "7");
             //act
-            _helpers.SetElementValue(_driver, ProdQuantity, _helpers.nonInt);
+            _helpers.SetElementValue(_driver, ProdQuantity, invalidInput);
             _driver.FindElement(ProdQuantity).SendKeys(Keys.Tab);
             //assert
             _helpers.AssertElementValue(_driver, ProdQuantity, "7", "Validate Line Item Quantity Input detect incorrect behavior");
@@ -143,113 +144,6 @@ namespace AutomateTestForFactools
             // It's possible to input non-int into the field, but I wasn't be able to retrieve value if it's not int. Workaround is to put constant value and expect constant value as in the script
         }
 
-        //[TestMethod]
-        //public void IncreaseLineItemAmountToBe99Correctly()
-        //{
-        //    //arrange
-        //    int quantity = 98;
-        //    _driver.Navigate().GoToUrl(FacToolProductUrl);
-        //    _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
-
-        //    _helpers.SelectProductVariant(_driver, 1, 1);
-        //    _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-        //    string productSku = _driver.FindElement(ProdSku).Text;
-        //    string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-        //    _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdAddToCartBtn);
-        //    _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdCartNotiBtn);
-
-        //    //act 
-        //    _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
-        //    _helpers.ClickElement(_driver, CartIncreaseItem);
-
-        //    //assert
-        //    _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-        //    _helpers.AssertElementValue(_driver, CartProdAmount, "99", "Validate Line Amount detect incorrect behavior");
-
-        //}
-
-        //[TestMethod]
-        //public void IncreaseLineItemAmountToBe100TheLineItemQuantityShouldNotExceed99()
-        //{
-        //    //arrange
-        //    int quantity = 99;
-        //    _driver.Navigate().GoToUrl(FacToolProductUrl);
-        //    _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
-
-        //    _helpers.SelectProductVariant(_driver, 1, 1);
-        //    _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-        //    string productSku = _driver.FindElement(ProdSku).Text;
-        //    string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-        //    _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdAddToCartBtn);
-        //    _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdCartNotiBtn);
-
-        //    //act 
-        //    _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
-        //    _helpers.ClickElement(_driver, CartIncreaseItem);
-
-        //    //assert
-        //    _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-        //    _helpers.AssertElementValue(_driver, CartProdAmount, "99", "Validate Line Amount detect incorrect behavior");
-
-        //}
-
-        //[TestMethod]
-        //public void DecreaseLineItemAmountToBe1Correctly()
-        //{
-        //    //arrange
-        //    int quantity = 2;
-        //    _driver.Navigate().GoToUrl(FacToolProductUrl);
-        //    _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
-
-        //    _helpers.SelectProductVariant(_driver, 1, 1);
-        //    _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-        //    string productSku = _driver.FindElement(ProdSku).Text;
-        //    string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-        //    _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdAddToCartBtn);
-        //    _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdCartNotiBtn);
-
-        //    //act 
-        //    _helpers.WaitToBeClickable(_driver, CartDecreaseItem, 5);
-        //    _helpers.ClickElement(_driver, CartDecreaseItem);
-
-        //    //assert
-        //    _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-        //    _helpers.AssertElementValue(_driver, CartProdAmount, "1", "Validate Line Amount detect incorrect behavior");
-
-        //}
-
-        //[TestMethod]
-        //public void DecreaseLineItemAmountToBe0LineItemQUantityShouldNotBeLowerThan1()
-        //{
-        //    //arrange
-        //    int quantity = 1;
-        //    _driver.Navigate().GoToUrl(FacToolProductUrl);
-        //    _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
-
-        //    _helpers.SelectProductVariant(_driver, 1, 1);
-        //    _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-        //    string productSku = _driver.FindElement(ProdSku).Text;
-        //    string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-        //    _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdAddToCartBtn);
-        //    _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdCartNotiBtn);
-
-        //    //act 
-        //    _helpers.WaitToBeClickable(_driver, CartDecreaseItem, 5);
-        //    _helpers.ClickElement(_driver, CartDecreaseItem);
-
-        //    //assert
-        //    _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-        //    _helpers.AssertElementValue(_driver, CartProdAmount, "1", "Validate Line Amount detect incorrect behavior");
-
-        //}
 
         [TestMethod]
         public void SetLineItemAmountToBe99Correctly()
@@ -360,9 +254,10 @@ namespace AutomateTestForFactools
         }
 
         [TestMethod]
-        public void SetLineItemAmountToBeNonIntQuantityIntoTheCartShouldBeBeValidateByUI()
+        public void SetLineItemAmountToBeInvalidQuantityIntoTheCartShouldBeBeValidateByUI()
         {
             //arrange
+            string invalidInput = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./ๆไำพะัีรนยบลฃงวสา่้เดกหฟผปแอิืทมใฝฅ,ฐญฯณ๊ํธฑฎ\"ฤฆฏโฌ็๋ษศซ.ฦฬฒ?์ฺฮฉ";
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
             _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
@@ -378,7 +273,7 @@ namespace AutomateTestForFactools
 
             //act 
             _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-            _helpers.SetElementValue(_driver, CartProdAmount, _helpers.nonInt);
+            _helpers.SetElementValue(_driver, CartProdAmount, invalidInput);
 
             //assert
             _helpers.AssertElementValue(_driver, CartProdAmount, "2", "Validate Line Item Quantity Input detect incorrect behavior");
@@ -575,70 +470,8 @@ namespace AutomateTestForFactools
             decimal roundedDecinal = decimal.Round(lineItemTotal, 2);
             _helpers.AssertElementText(_driver, CartProdTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
             _helpers.AssertElementText(_driver, CartTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-
         }
-
-        //[TestMethod]
-        //public void IncreaseLineItemAmountRecalculatedCorrectLineItemValue()
-        //{
-        //    //arrange
-        //    int quantity = 98;
-        //    _driver.Navigate().GoToUrl(FacToolProductUrl);
-        //    _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
-
-        //    _helpers.SelectProductVariant(_driver, 1, 1);
-        //    _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-        //    string productSku = _driver.FindElement(ProdSku).Text;
-        //    string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-        //    _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdAddToCartBtn);
-        //    _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdCartNotiBtn);
-
-        //    //act 
-        //    _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
-        //    _helpers.ClickElement(_driver, CartIncreaseItem);
-
-        //    //assert
-        //    Thread.Sleep(1000);
-        //    decimal priceTag = Convert.ToDecimal(pricePerUnit);
-        //    decimal lineItemTotal = (quantity + 1) * priceTag;
-        //    decimal roundedDecinal = decimal.Round(lineItemTotal, 2);
-        //    _helpers.AssertElementText(_driver, CartProdTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-        //    _helpers.AssertElementText(_driver, CartTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-        //}
-
-        //[TestMethod]
-        //public void DecreaseLineItemAmountRecalculatedCorrectLineItemValue()
-        //{
-        //    //arrange
-        //    int quantity = 98;
-        //    _driver.Navigate().GoToUrl(FacToolProductUrl);
-        //    _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
-
-        //    _helpers.SelectProductVariant(_driver, 1, 1);
-        //    _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-        //    string productSku = _driver.FindElement(ProdSku).Text;
-        //    string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-        //    _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdAddToCartBtn);
-        //    _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
-        //    _helpers.ClickElement(_driver, ProdCartNotiBtn);
-
-        //    //act 
-        //    _helpers.WaitToBeClickable(_driver, CartDecreaseItem, 5);
-        //    _helpers.ClickElement(_driver, CartDecreaseItem);
-
-        //    //assert
-        //    Thread.Sleep(1000);
-        //    decimal priceTag = Convert.ToDecimal(pricePerUnit);
-        //    decimal lineItemTotal = (quantity - 1) * priceTag;
-        //    decimal roundedDecinal = decimal.Round(lineItemTotal, 2);
-        //    _helpers.AssertElementText(_driver, CartProdTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-        //    _helpers.AssertElementText(_driver, CartTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-        //}
-
-
+        
         [TestMethod]
         public void SetLineItemAmountRecalculatedCorrectLineItemValue()
         {

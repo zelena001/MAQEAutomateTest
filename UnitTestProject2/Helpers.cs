@@ -8,7 +8,6 @@ namespace AutomateTestForFactools
 {
     class Helpers
     {
-        public string nonInt = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./";
         public void ClickElement(IWebDriver driver, By elementPath)
         {
             var targetElement = driver.FindElement(elementPath);
@@ -24,7 +23,6 @@ namespace AutomateTestForFactools
             var targetElement = driver.FindElement(elementPath);
             targetElement.Clear();
             targetElement.SendKeys(value);
-            //Assert.AreEqual(value, targetElement.Text, "can't insert value, caurrent value is "+targetElement.Text);
         }
         
         public void WaitToBeClickable(IWebDriver driver, By itemPath, int timeInSec)
@@ -34,8 +32,6 @@ namespace AutomateTestForFactools
         }
         public void AssertElementValue(IWebDriver driver, By itemPath, string expectedValue, string exceptionHandlerMsg)
         {
-            //enable var x for debuggin
-            //var x = driver.FindElement(itemPath);
             string actualValue = driver.FindElement(itemPath).GetAttribute("value");
             Assert.AreEqual(expectedValue, actualValue, exceptionHandlerMsg +" Expected value " + actualValue + " to be equal to " + expectedValue);
         }
@@ -74,11 +70,5 @@ namespace AutomateTestForFactools
                 Assert.AreEqual(true, contain, exceptionHandlerMsg +" Expect" + MainMessage + " To Contain " + (driver.FindElement(itemPath).Text));
             }
         }
-        //public string GetElementText(IWebDriver driver, By itemPath, string returnText)
-        //{
-        //    string objectText = "2";
-        //    return x;
-
-        //}
     }
 }

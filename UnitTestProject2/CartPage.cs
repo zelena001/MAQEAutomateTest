@@ -125,14 +125,15 @@ namespace AutomateTestForFactools
         }
 
         [TestMethod]
-        public void AddNewLineItemWithWithNonIntQuantityIntoTheCartShouldBeBeValidateByUI()
+        public void AddNewLineItemWithWithInvalidQuantityIntoTheCartShouldBeBeValidateByUI()
         {
             //arrange
+            string invalidInput = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./ๆไำพะัีรนยบลฃงวสา่้เดกหฟผปแอิืทมใฝฅ,ฐญฯณ๊ํธฑฎ\"ฤฆฏโฌ็๋ษศซ.ฦฬฒ?์ฺฮฉ";
             _driver.Navigate().GoToUrl(FacToolProductUrl);
             _driver.FindElement(ProdQuantity).Clear();
             _helpers.SetElementValue(_driver, ProdQuantity, "7");
             //act
-            _helpers.SetElementValue(_driver, ProdQuantity, _helpers.nonInt);
+            _helpers.SetElementValue(_driver, ProdQuantity, invalidInput);
             _driver.FindElement(ProdQuantity).SendKeys(Keys.Tab);
             //assert
             _helpers.AssertElementValue(_driver, ProdQuantity, "7", "Validate Line Item Quantity Input detect incorrect behavior");
@@ -356,9 +357,10 @@ namespace AutomateTestForFactools
         }
 
         [TestMethod]
-        public void SetLineItemAmountToBeNonIntQuantityIntoTheCartShouldBeBeValidateByUI()
+        public void SetLineItemAmountToBeInvalidQuantityIntoTheCartShouldBeBeValidateByUI()
         {
             //arrange
+            string invalidInput = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./ๆไำพะัีรนยบลฃงวสา่้เดกหฟผปแอิืทมใฝฅ,ฐญฯณ๊ํธฑฎ\"ฤฆฏโฌ็๋ษศซ.ฦฬฒ?์ฺฮฉ";
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
             _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
@@ -374,7 +376,7 @@ namespace AutomateTestForFactools
 
             //act 
             _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-            _helpers.SetElementValue(_driver, CartProdAmount, _helpers.nonInt);
+            _helpers.SetElementValue(_driver, CartProdAmount, invalidInput);
 
             //assert
             _helpers.AssertElementValue(_driver, CartProdAmount, "2", "Validate Line Item Quantity Input detect incorrect behavior");
