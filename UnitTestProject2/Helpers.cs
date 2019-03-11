@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AutomateTestForFactools
 {
-    class Helpers
+    public class Helpers
     {
         public void ClickElement(IWebDriver driver, By elementPath)
         {

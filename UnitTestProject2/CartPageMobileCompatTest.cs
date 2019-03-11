@@ -30,6 +30,7 @@ namespace AutomateTestForFactools
         private By ProdQuantity = By.XPath("//*[@data-test=\"amount-quantity\"]");
         private By ProdAddToCartBtn = By.XPath("//*[@data-test=\"add-to-cart\"]");
         private By ProdCartNotiBtn = By.XPath("//*[@href=\"https://factools.qa.maqe.com/cart\"]");
+        private By ProdVariant = By.XPath("//*[@id=\"product-variants-0\"]/div");
         //expected Error Handler when adding more than 99 for item amount from Item Detail Screen
         private By expectedErrorMsg = By.XPath("//*[@data-test=\"exception\"]");
 
@@ -67,7 +68,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 99;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -151,7 +152,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -178,7 +179,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -205,7 +206,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -232,7 +233,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -260,7 +261,7 @@ namespace AutomateTestForFactools
             string invalidInput = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./ๆไำพะัีรนยบลฃงวสา่้เดกหฟผปแอิืทมใฝฅ,ฐญฯณ๊ํธฑฎ\"ฤฆฏโฌ็๋ษศซ.ฦฬฒ?์ฺฮฉ";
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -287,7 +288,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 50;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -311,7 +312,7 @@ namespace AutomateTestForFactools
             int quantity = 1;
             int totalQuantity = quantity * 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -342,7 +343,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -383,7 +384,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -394,7 +395,7 @@ namespace AutomateTestForFactools
             Thread.Sleep(1000);
             _driver.Navigate().GoToUrl(FacToolProductUrl2);
             Thread.Sleep(2000);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku2 = _driver.FindElement(ProdSku).Text;
@@ -423,7 +424,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -449,7 +450,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 99;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -478,7 +479,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
@@ -509,7 +510,7 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
+            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
 
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
