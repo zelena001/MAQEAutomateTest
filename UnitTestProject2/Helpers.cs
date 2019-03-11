@@ -8,19 +8,17 @@ namespace AutomateTestForFactools
 {
     public class Helpers
     {
-        public void ClickElement(IWebDriver driver, By elementPath)
+        public void ClickElement(IWebDriver driver, By itemPath)
         {
-            var targetElement = driver.FindElement(elementPath);
+            WaitToBeClickable(driver, itemPath, 10);
+            var targetElement = driver.FindElement(itemPath);
             targetElement.Click();
         }
-        public void WaitToClick(IWebDriver driver, By itemPath, int timeInSec)
+
+        public void SetElementValue(IWebDriver driver, By itemPath, string value)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSec));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(itemPath));
-        }
-        public void SetElementValue(IWebDriver driver, By elementPath, string value)
-        {
-            var targetElement = driver.FindElement(elementPath);
+            WaitToBeClickable(driver, itemPath, 10);
+            var targetElement = driver.FindElement(itemPath);
             targetElement.Clear();
             targetElement.SendKeys(value);
         }
@@ -30,8 +28,10 @@ namespace AutomateTestForFactools
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSec));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(itemPath));
         }
+
         public void AssertElementValue(IWebDriver driver, By itemPath, string expectedValue, string exceptionHandlerMsg)
         {
+            WaitToBeClickable(driver, itemPath, 5);
             string actualValue = driver.FindElement(itemPath).GetAttribute("value");
             Assert.AreEqual(expectedValue, actualValue, exceptionHandlerMsg +" Expected value " + actualValue + " to be equal to " + expectedValue);
         }
@@ -47,6 +47,7 @@ namespace AutomateTestForFactools
             int choice = variantChoice + 1;
             By Variant = By.XPath("//*[@id=\"product-variants-"+variant+"\"]/div");
             By Choice = By.XPath("//*[@id=\"product-variants-" + variant + "\"]/div/ul/li[" + choice + "]");
+            WaitToBeClickable(driver, Variant, 10);
             ClickElement(driver, Variant);
             ClickElement(driver, Choice);
         }

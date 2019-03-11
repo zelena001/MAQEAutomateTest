@@ -48,7 +48,7 @@ namespace AutomateTestForFactools
 
         [TestInitialize]
         public void TestSetUp()
-        { 
+        {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
         }
@@ -56,7 +56,7 @@ namespace AutomateTestForFactools
         [TestCleanup]
         public void TestCleanUp()
         {
-                _driver.Quit();
+            _driver.Quit();
         }
 
         [TestMethod]
@@ -65,25 +65,21 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 99;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-            
             _helpers.SelectProductVariant(_driver, 1, 1);
-            _helpers.SetElementValue(_driver, ProdQuantity,quantity.ToString());
+            _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku1 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
 
             //act 
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //assert
-            _helpers.WaitToBeClickable(_driver,CartProdAmount, 5 );
-            _helpers.AssertElementText(_driver, CartProdPrice, pricePerUnit, "Validate Line Item price detect incorrect behavior");
+            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, quantity.ToString(), "Validate Line Amount detect incorrect behavior");
+            _helpers.AssertElementText(_driver, CartProdPrice, pricePerUnit, "Validate Line Item price detect incorrect behavior");
             _helpers.AssertStringToContainElementText(_driver, CartProdSku, productSku1, "Product SKU for first item doesn't show correct in Cart Screen");
-         }
+        }
 
         [TestMethod]
         public void AddNewLineItemWith100QuantityIntoTheCartShouldBeLimitTo2DigitsByUI()
@@ -96,8 +92,8 @@ namespace AutomateTestForFactools
             _helpers.SetElementValue(_driver, ProdQuantity, quantity);
 
             //assert
-            _helpers.AssertElementValue(_driver, ProdQuantity, "10", "Validate Line Item Quantity Input detect incorrect behavior");
 
+            _helpers.AssertElementValue(_driver, ProdQuantity, "10", "Validate Line Item Quantity Input detect incorrect behavior");
         }
 
         [TestMethod]
@@ -111,6 +107,7 @@ namespace AutomateTestForFactools
             _helpers.SetElementValue(_driver, ProdQuantity, quantity);
 
             //assert
+
             _helpers.AssertElementValue(_driver, ProdQuantity, "1", "Validate Line Item Quantity Input detect incorrect behavior");
         }
 
@@ -150,23 +147,17 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
             _helpers.ClickElement(_driver, CartIncreaseItem);
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "99", "Validate Line Amount detect incorrect behavior");
         }
 
@@ -176,25 +167,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 99;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
             _helpers.ClickElement(_driver, CartIncreaseItem);
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "99", "Validate Line Amount detect incorrect behavior");
-
         }
 
         [TestMethod]
@@ -203,25 +187,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartDecreaseItem, 5);
             _helpers.ClickElement(_driver, CartDecreaseItem);
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "1", "Validate Line Amount detect incorrect behavior");
-
         }
 
         [TestMethod]
@@ -230,25 +207,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartDecreaseItem, 5);
             _helpers.ClickElement(_driver, CartDecreaseItem);
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "1", "Validate Line Amount detect incorrect behavior");
-
         }
 
         [TestMethod]
@@ -257,25 +227,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.SetElementValue(_driver, CartProdAmount, "99");
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "99", "Validate Line Amount detect incorrect behavior");
-
         }
 
         [TestMethod]
@@ -284,25 +247,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.SetElementValue(_driver, CartProdAmount, "100");
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "10", "Validate Line Amount detect incorrect behavior");
-
         }
 
         [TestMethod]
@@ -311,25 +267,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.SetElementValue(_driver, CartProdAmount, "1");
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "1", "Validate Line Amount detect incorrect behavior");
-            
         }
 
         [TestMethod]
@@ -338,25 +287,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.SetElementValue(_driver, CartProdAmount, "0");
 
             //assert
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, "1", "Validate Line Amount detect incorrect behavior");
-            
         }
 
         [TestMethod]
@@ -366,19 +308,14 @@ namespace AutomateTestForFactools
             string invalidInput = "!@#$%^&*()_+-=QWERTYUIOP{}|[]\\ASDFGHJKL:;'\"ZXCVBNM<>?,./ๆไำพะัีรนยบลฃงวสา่้เดกหฟผปแอิืทมใฝฅ,ฐญฯณ๊ํธฑฎ\"ฤฆฏโฌ็๋ษศซ.ฦฬฒ?์ฺฮฉ";
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.SetElementValue(_driver, CartProdAmount, invalidInput);
 
             //assert
@@ -393,8 +330,6 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 50;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
@@ -417,31 +352,23 @@ namespace AutomateTestForFactools
             int quantity = 1;
             int totalQuantity = quantity * 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
             _helpers.SelectProductVariant(_driver, 1, 0);
             _helpers.SelectProductVariant(_driver, 1, 1);
-            Thread.Sleep(1000);
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
+            Thread.Sleep(1500);
 
             //act 
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
 
             //assert
-
-            _helpers.AssertElementText(_driver, CartProdPrice, pricePerUnit, "Validate Line Item price detect incorrect behavior");
             _helpers.AssertElementValue(_driver, CartProdAmount, totalQuantity.ToString(), "Validate Line Amount detect incorrect behavior");
+            _helpers.AssertElementText(_driver, CartProdPrice, pricePerUnit, "Validate Line Item price detect incorrect behavior");
             Assert.IsTrue((productSku).Contains((_driver.FindElement(CartProdSku).Text)));
-
         }
 
         [TestMethod]
@@ -450,39 +377,31 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku1 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit1 = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
             _helpers.SelectProductVariant(_driver, 1, 2);
             Thread.Sleep(1000);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             Thread.Sleep(1000);
             // the Web not update information, it need delay or it will pull invalid number
             string productSku2 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit2 = _driver.FindElement(ProdPrice).Text;
 
             //act 
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
 
             //assert
 
-            
+
             _helpers.AssertElementValue(_driver, CartProdAmount, quantity.ToString(), "Validate Line Amount detect incorrect behavior");
             _helpers.AssertStringToContainElementText(_driver, CartProdSku, productSku1, "Product SKU for first item doesn't show correct in Cart Screen");
 
             _helpers.AssertElementValue(_driver, CartProdAmount2, quantity.ToString(), "Validate Line Amount detect incorrect behavior");
             _helpers.AssertStringToContainElementText(_driver, CartProdSku2, productSku2, "Product SKU for Second item doesn't show correct in Cart Screen");
-
         }
 
         [TestMethod]
@@ -491,30 +410,22 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku1 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit1 = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
             Thread.Sleep(1000);
             _driver.Navigate().GoToUrl(FacToolProductUrl2);
             Thread.Sleep(2000);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku2 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit2 = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
 
             //assert
             _helpers.AssertElementValue(_driver, CartProdAmount, quantity.ToString(), "Validate Line Amount detect incorrect behavior");
@@ -522,7 +433,6 @@ namespace AutomateTestForFactools
 
             _helpers.AssertElementValue(_driver, CartProdAmount2, quantity.ToString(), "Validate Line Amount detect incorrect behavior");
             _helpers.AssertStringToContainElementText(_driver, CartProdSku2, productSku2, "Product SKU for Second item doesn't show correct in Cart Screen");
-
         }
 
         [TestMethod]
@@ -531,23 +441,18 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 2;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartRemoveItem, 5);
             _helpers.ClickElement(_driver, CartRemoveItem);
 
             //assert
-            _helpers.WaitToBeNotExist(_driver, CartProdTotal,5);
+            Thread.Sleep(2000);
             _helpers.AssertElementText(_driver, CartTotal, "0.00", "Validate Line Amount detect incorrect behavior");
         }
 
@@ -557,28 +462,22 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 99;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku1 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
 
             //act 
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //assert
             _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
-            
             decimal priceTag = Convert.ToDecimal(pricePerUnit);
             decimal lineItemTotal = quantity * priceTag;
             decimal roundedDecinal = decimal.Round(lineItemTotal, 2);
             _helpers.AssertElementText(_driver, CartProdTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
             _helpers.AssertElementText(_driver, CartTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-
         }
 
         [TestMethod]
@@ -587,25 +486,20 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
             _helpers.ClickElement(_driver, CartIncreaseItem);
 
             //assert
             Thread.Sleep(1000);
             decimal priceTag = Convert.ToDecimal(pricePerUnit);
-            decimal lineItemTotal = (quantity+1) * priceTag;
+            decimal lineItemTotal = (quantity + 1) * priceTag;
             decimal roundedDecinal = decimal.Round(lineItemTotal, 2);
             _helpers.AssertElementText(_driver, CartProdTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
             _helpers.AssertElementText(_driver, CartTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
@@ -617,19 +511,14 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartDecreaseItem, 5);
             _helpers.ClickElement(_driver, CartDecreaseItem);
 
             //assert
@@ -648,29 +537,23 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 98;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku = _driver.FindElement(ProdSku).Text;
             string pricePerUnit = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, CartIncreaseItem, 5);
             _helpers.SetElementValue(_driver, CartProdAmount, "99");
 
             //assert
             Thread.Sleep(1000);
             decimal priceTag = Convert.ToDecimal(pricePerUnit);
-            decimal lineItemTotal = 99* priceTag;
+            decimal lineItemTotal = 99 * priceTag;
             decimal roundedDecinal = decimal.Round(lineItemTotal, 2);
             _helpers.AssertElementText(_driver, CartProdTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
             _helpers.AssertElementText(_driver, CartTotal, roundedDecinal.ToString("0,000.00"), "Line Item Total is not correct, ");
-
         }
 
         [TestMethod]
@@ -679,32 +562,25 @@ namespace AutomateTestForFactools
             //arrange
             int quantity = 1;
             _driver.Navigate().GoToUrl(FacToolProductUrl);
-            _helpers.WaitToBeClickable(_driver, ProdVariant, 30);
-
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku1 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit1 = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
             Thread.Sleep(1000);
             _driver.Navigate().GoToUrl(FacToolProductUrl2);
             Thread.Sleep(2000);
-            _helpers.WaitToBeClickable(_driver, ProdQuantity, 30);
             _helpers.SelectProductVariant(_driver, 1, 1);
             _helpers.SetElementValue(_driver, ProdQuantity, quantity.ToString());
             string productSku2 = _driver.FindElement(ProdSku).Text;
             string pricePerUnit2 = _driver.FindElement(ProdPrice).Text;
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
 
             //act 
-            _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
-            _helpers.WaitToBeClickable(_driver, ProdCartNotiBtn, 5);
             _helpers.ClickElement(_driver, ProdCartNotiBtn);
-            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
 
             //assert
+            _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             decimal priceTag1 = Convert.ToDecimal(pricePerUnit1);
             decimal priceTag2 = Convert.ToDecimal(pricePerUnit2);
             decimal lineItemTotal1 = quantity * priceTag1;
