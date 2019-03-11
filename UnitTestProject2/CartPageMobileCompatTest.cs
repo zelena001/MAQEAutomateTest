@@ -51,17 +51,16 @@ namespace AutomateTestForFactools
         [TestInitialize]
         public void TestSetUp()
         {
-
             _driver = new ChromeDriver();
             _driver.Manage().Window.Size = new Size(334, 750);
-
-
         }
+
         [TestCleanup]
         public void TestCleanUp()
         {
             _driver.Quit();
         }
+
         [TestMethod]
         public void AddNewLineItemWith99QuantityIntoTheCartSuccessfully()
         {
@@ -85,8 +84,6 @@ namespace AutomateTestForFactools
             _helpers.WaitToBeClickable(_driver, CartProdAmount, 5);
             _helpers.AssertElementValue(_driver, CartProdAmount, quantity.ToString(), "Validate Line Amount detect incorrect behavior");
             _helpers.AssertStringToContainElementText(_driver, CartProdSku, productSku1, "Product SKU for first item doesn't show correct in Cart Screen");
-
-
         }
 
         [TestMethod]
@@ -95,9 +92,10 @@ namespace AutomateTestForFactools
             //arrange
             string quantity = "100";
             _driver.Navigate().GoToUrl(FacToolProductUrl);
+
             //act
-            _driver.FindElement(ProdQuantity).Clear();
-            _driver.FindElement(ProdQuantity).SendKeys(quantity);
+            _helpers.SetElementValue(_driver, ProdQuantity, quantity);
+
             //assert
             _helpers.AssertElementValue(_driver, ProdQuantity, "10", "Validate Line Item Quantity Input detect incorrect behavior");
 
@@ -109,9 +107,10 @@ namespace AutomateTestForFactools
             //arrange
             string quantity = "0";
             _driver.Navigate().GoToUrl(FacToolProductUrl);
+
             //act
-            _driver.FindElement(ProdQuantity).Clear();
-            _driver.FindElement(ProdQuantity).SendKeys(quantity);
+            _helpers.SetElementValue(_driver, ProdQuantity, quantity);
+
             //assert
             _helpers.AssertElementValue(_driver, ProdQuantity, "1", "Validate Line Item Quantity Input detect incorrect behavior");
         }
@@ -121,9 +120,10 @@ namespace AutomateTestForFactools
         {
             //arrange
             _driver.Navigate().GoToUrl(FacToolProductUrl);
+
             //act
-            _driver.FindElement(ProdQuantity).Clear();
-            _driver.FindElement(ProdQuantity).SendKeys(Keys.Tab);
+            _helpers.SetElementValue(_driver, ProdQuantity, Keys.Tab);
+
             //assert
             _helpers.AssertElementValue(_driver, ProdQuantity, "1", "Validate Line Item Quantity Input detect incorrect behavior");
         }
@@ -322,7 +322,7 @@ namespace AutomateTestForFactools
             _helpers.ClickElement(_driver, ProdAddToCartBtn);
             _helpers.SelectProductVariant(_driver, 1, 0);
             _helpers.SelectProductVariant(_driver, 1, 1);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             _helpers.WaitToBeClickable(_driver, ProdAddToCartBtn, 5);
 
             //act 
