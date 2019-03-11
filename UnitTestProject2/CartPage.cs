@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.IO;
 using System.Threading;
 
 namespace AutomateTestForFactools
@@ -9,10 +10,11 @@ namespace AutomateTestForFactools
     [TestClass]
     public class CartPage
     {
-        static private IWebDriver _driver;
+        public IWebDriver _driver;
         private const string FacToolProductUrl = "https://factools.qa.maqe.com/p/20";
         private const string FacToolProductUrl2 = "https://factools.qa.maqe.com/p/21";
         private Helpers _helpers = new Helpers();
+        public TestContext TestContext { get; set; }
 
         //Header Obhect Locator
         private By MiniCart = By.XPath("//*[@data-test=\"mini-cart\"]");
@@ -55,7 +57,17 @@ namespace AutomateTestForFactools
         [TestCleanup]
         public void TestCleanUp()
         {
-            _driver.Quit();
+            if (_driver != null)
+            {
+                if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed )
+                {
+                    Screenshot ss = ((ITakesScreenshot)_driver).GetScreenshot();
+                    string path = $"{Directory.GetCurrentDirectory()}/{TestContext.TestName}_ScreenShot.png";
+                    ss.SaveAsFile(path);
+                    TestContext.AddResultFile(path);
+                }
+                _driver.Quit();
+            }
         }
 
         [TestMethod]
